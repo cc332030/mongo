@@ -1,0 +1,12 @@
+
+= dateToString
+
+[source,json]
+----
+{
+  "$dateToString": {
+    "format": "%Y-%m-%d %H:%M:%S",
+    "date": "$createTime"
+  }
+}
+----

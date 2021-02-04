@@ -1,0 +1,38 @@
+
+= aggregate group
+
+[source,json]
+----
+{
+  "aggregate": "test",
+  "pipeline": [
+    {
+      "$match": {
+        "createTime": {
+          "$gte": "2020-08-26 00:00:00",
+          "$lt": "2020-09-01 00:00:00"
+        }
+      }
+    },
+    {
+      "$group": {
+        "_id": {
+          "$dateToString": {
+            "format": "%Y-%m-%d %H:%M:%S",
+            "date": {
+              "$add": [
+                "$createTime",
+                28800000
+              ]
+            }
+          }
+        },
+        "count": {
+          "$sum": 1
+        }
+      }
+    }
+  ]
+}
+
+----

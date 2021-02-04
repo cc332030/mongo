@@ -1,0 +1,33 @@
+
+= mongo 嵌入式索引
+
+== 嵌入式文档索引
+
+=== 单值
+[source,mongojs]
+----
+
+db.records.createIndex( { location: 1 } )
+
+// 索引生效
+db.records.find({
+    location:  {
+      state: ''
+    }
+})
+
+// 索引失效，请使用嵌入式字段索引
+db.records.find({
+    'location.state': ''
+})
+
+----
+
+== 嵌入式字段索引
+
+=== 单值
+[source,mongojs]
+----
+db.records.createIndex( { "location.state": 1 } )
+
+----

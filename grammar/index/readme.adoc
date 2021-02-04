@@ -1,0 +1,19 @@
+
+= mongo index
+
+索引
+
+单值索引和嵌入式索引
+
+== 单字段索引
+1 升序，-1 降序
+
+对于单字段索引和排序操作，索引键的排序顺序（即升序或降序）无关紧要，因为MongoDB可以沿任一方向遍历索引。
+
+[source,mongojs]
+----
+db.records.createIndex( { score: 1 } )
+
+db.records.createIndex( { "location.state": 1 } )
+
+----

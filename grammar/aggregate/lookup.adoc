@@ -1,0 +1,20 @@
+
+= aggregate lookup
+
+[source,json]
+----
+{
+  "aggregate": "collection",
+  "pipeline": [
+    {
+      "$lookup": {
+        "from": "from",
+        "localField": "localField",
+        "foreignField": "foreignField",
+        "as": "as"
+      }
+    }
+  ]
+}
+
+----
