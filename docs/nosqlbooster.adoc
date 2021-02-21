@@ -1,0 +1,21 @@
+
+= nosqlbooster
+
+== crack
+
+[source,shell script]
+----
+npm install asar -g
+
+# cd ${install_path}/resources
+asar extract app.asar app
+
+# shared\lmCore.js
+# MAX_TRIAL_DAYS=3000
+
+# return MAX_TRIAL_DAYS < r ? MAX_TRIAL_DAYS : r
+# return MAX_TRIAL_DAYS
+
+asar pack app app.asar
+
+----
