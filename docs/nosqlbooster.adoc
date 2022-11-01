@@ -16,6 +16,8 @@ asar extract app.asar app
 # return MAX_TRIAL_DAYS < r ? MAX_TRIAL_DAYS : r
 # return MAX_TRIAL_DAYS
 
+# disable resources\app-update.yml, make url 404
+
 asar pack app app.asar
 
 ----
