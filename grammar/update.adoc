@@ -9,13 +9,17 @@ db.collection.find({
         $regex: "毛"
     }
 }).forEach((it) => {
+
+    const array = it.array;
+
     db.collection.updateOne(
         {
             _id: it._id
         },
         {
             $set: {
-                age: it.age + 1
+                age: it.age + 1,
+                array: array
             }
         }
     );
