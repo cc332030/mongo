@@ -1,0 +1,24 @@
+
+= update
+
+[source,js]
+----
+// update each row
+db.collection.find({
+    name: {
+        $regex: "毛"
+    }
+}).forEach((it) => {
+    db.collection.updateOne(
+        {
+            _id: it._id
+        },
+        {
+            $set: {
+                age: it.age + 1
+            }
+        }
+    );
+});
+
+----
