@@ -3,10 +3,11 @@
 
 [source,js]
 ----
+
 // update each row
 db.collection.find({
     name: {
-        $regex: "毛"
+        $regex: "val"
     }
 }).forEach((it) => {
 
@@ -23,6 +24,51 @@ db.collection.find({
             }
         }
     );
+});
+
+// 替换所有
+if(typeof String.prototype.replaceAll === "undefined") {
+    String.prototype.replaceAll = function(match, replace) {
+        return this.replace(new RegExp(match, 'g'), () => replace);
+    }
+}
+
+function c_replace(data, item, name){
+
+    const value = item[name];
+    if(value) {
+        data[name] = value.replaceAll('old', 'new');
+    }
+}
+
+function c_replace_array(data, item, arrayName, name){
+
+    const array = item[arrayName];
+    if(array) {
+        data[arrayName] = array;
+    }
+
+    array.forEach(item => {
+        c_replace(item, item, name);
+    })
+}
+
+db.collection.find({}).forEach((it) => {
+
+    const newData = {};
+
+    c_replace(newData, it, 'phone');
+    c_replace_array(newData, it, 'array', 'phone');
+
+    db.collection.updateOne(
+        {
+            _id: it._id
+        },
+        {
+            $set: newData
+        }
+    )
+
 });
 
 ----
