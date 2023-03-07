@@ -5,7 +5,7 @@
 
 [source,shell script]
 ----
-npm install asar -g
+npm install @electron/asar -g
 
 # cd ${install_path}/resources
 asar extract app.asar app
